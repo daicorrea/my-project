@@ -15,17 +15,16 @@ class ReadFile():
         try:
             #dirpath = os.getcwd()
             #print(dirpath)
-            quotes = open("../../database.csv")
-            contents_of_file = quotes.read()
-            quotes.close()
-            print(contents_of_file)
-            #content =  open(self.filename, 'rU')
+            #content = open(self.filename, 'rU')
             #rows = content.read()
             #content.close()
-            #for row in rows:
-            #    self._data = row
-            #    print(row)
+            #self._data = rows
 
+            lines = []
+            with open(self.filename, 'rU') as content:
+                for line in content:
+                    lines.append(line)
+            print(lines)
 
         except IOError:
             raise IOError("Houston, we have a problem scanning the document :(")
