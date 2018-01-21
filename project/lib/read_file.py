@@ -20,11 +20,23 @@ class ReadFile():
             #content.close()
             #self._data = rows
 
-            lines = []
+            #lines = []
+            #with open(self.filename, 'rU') as content:
+            #    for line in content:
+            #        lines.append(line)
+            #print(lines)
+
             with open(self.filename, 'rU') as content:
-                for line in content:
-                    lines.append(line)
-            print(lines)
+                data = content.readlines()
+                #print(data)
+
+            for line in data:
+                words = line.rstrip().split(';')
+                self._data.append(words)
+                #print(words)
+
+            #for i in range(1,2):
+                #print(data[i])
 
         except IOError:
             raise IOError("Houston, we have a problem scanning the document :(")
