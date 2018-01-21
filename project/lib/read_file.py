@@ -22,8 +22,9 @@ class ReadFile():
 
             for line in data:
                 words = line.rstrip().split(';')
-                self._data.append(words)
-                #print(words)
+                # Removing data column name line.
+                if 'PROPERTY_NAME' not in line:
+                    self._data.append(words)
 
             #for i in range(1,2):
                 #print(data[i])
