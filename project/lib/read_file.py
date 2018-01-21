@@ -9,23 +9,13 @@ class ReadFile():
         self.filename = filename
         self.read_content()
 
-    #rU stands for: "open for input as a text file with universal newline interpretation".
-    #Mode "rU" is also allowed, for symmetry with "rb".
     def read_content(self):
         try:
             #dirpath = os.getcwd()
             #print(dirpath)
-            #content = open(self.filename, 'rU')
-            #rows = content.read()
-            #content.close()
-            #self._data = rows
 
-            #lines = []
-            #with open(self.filename, 'rU') as content:
-            #    for line in content:
-            #        lines.append(line)
-            #print(lines)
-
+            # rU stands for: "open for input as a text file with universal newline interpretation".
+            # Mode "rU" is also allowed, for symmetry with "rb".
             with open(self.filename, 'rU') as content:
                 data = content.readlines()
                 #print(data)
