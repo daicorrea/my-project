@@ -1,8 +1,9 @@
-class Hotel():
+from lib import property
+
+class Hotel(property.Property):
     """This Class provides a way to store hotel informations."""
 
-    def __init__(self, property_name):
-        self.property_name = property_name
-
-    def get_info(self):
-        return self.property_name
+    def __init__(self, property_name, property_type, local, star_rating, week_price, weekend_price,
+                 loyalty_week_price, loyalty_weekend_price):
+        property.Property.__init__(self, property_name, property_type, local, star_rating, week_price, weekend_price,
+                 loyalty_week_price, loyalty_weekend_price)
