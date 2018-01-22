@@ -17,7 +17,8 @@ class ReadFile():
             with open(self._filename, 'rU') as content:
                 data = content.readlines()  # Passing each line for a list
             for line in data:
-                words = line.rstrip().split(';')  # Removing special character like space and splitting my list by ;
+                # Removing special character like space and splitting my list by ;
+                words = line.rstrip().split(';')
                 # Removing data column name line.
                 if 'PROPERTY_NAME' not in line:
                     self._data.append(words)

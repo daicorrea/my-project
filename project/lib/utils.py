@@ -8,7 +8,7 @@ def split_text(text_to_split):
     return text_to_split
 
 
-# Function to verify if param day inputted by the user is week day or weekend
+# Function to verify if param day is week day or weekend
 def verify_day(user_date):
     # Using regular expression to get the day of the week inside the parentheses from the inputted data
     day = user_date[user_date.find("(") + 1:user_date.find(")")]
