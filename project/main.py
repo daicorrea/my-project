@@ -1,42 +1,35 @@
-from lib import read_file
-from lib import hotel
 from lib import utils
 from lib import price_quote
+from lib import load_data
+
+import sys
 
 def main():
-    #Read database file with .csv extension to get current prices information
-    file = read_file.ReadFile('../docs/database.csv')
-    database = file.get_data()
-    #print(database)
+    # Load Data Information from File
+    property_list = load_data.load_database()
 
-    #Create objects
-    property_list = [] #List of hotels
-    for data in database:
-        property_list.append(hotel.Hotel(data[0], data[1], data[2], data[3], data[4],
-                                      data[5], data[6], data[7]))
-
-    #print(property_list[0].get_info())
-
-    #Get User Information
+    # Get User Information
     user_input = input('Please enter your type of client and the desired dates: ')
-    if utils.verify_user_input(user_input):
-        utils.format_user_input(user_input)
+    if utils.validate_user_input(user_input):  # Validate input
+        input_list = utils.format_user_input(user_input)
     else:
-        print('Sorry, we couldn\'t process your request. Please verify how you wrote your search and try again.')
+        print('Sorry, I couldn\'t process your request. Please verify if you are searching in the following format: \n'
+              '<client_type>: <date1>, <date2>, <date3>, ...')
+        sys.exit()  # Close Program
 
-    #Quote property prices
-    #for property in property_list:
-        #price_quote.PriceQuote(property)
+    # Quote Property Prices
+    quote_list = []
+    client_type = input_list.pop(0).lower()  # Passing it all to lower case
+    if utils.validate_client_type(client_type):
+        for property in property_list:
+            # --------------- COMENTAR AQUI DIREITO -------------
+            quote_list.append(price_quote.PriceQuote(property, client_type, input_list))
+        utils.get_cheapest_property(quote_list)
+    else:
+        print('Sorry, I couldn\'t process your request. Please verify if you typed your client type correctly '
+              '(Regular or Rewards).')
+        sys.exit()
 
-
-    #Find Week Day
-    #day = user_input[user_input.find("(") + 1:user_input.find(")")]
-    #print(day)
-
-
-
-    #print(property_list.get_info())
-
-#Only executes this project by itself. Do not allow to be imported by another program.
+# Only executes this project by itself. Do not allow to be imported by another program.
 if __name__ == "__main__":
     main()
