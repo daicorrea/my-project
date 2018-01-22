@@ -17,9 +17,13 @@ def load_database():
             # Verify if the document has 8 columns
             if validate_list_quatity(data, 8):
                 # Removing data column name line using first identity column item in the list.
-                if 'PROPERTY_NAME' not in data[0]:
-                    # Using argument unpacking to pass the attributes to create the hotels and add to the property list
-                    property_list.append(hotel.Hotel(*data))
+                if 'property_name' not in data[0].lower():
+                    # Verify if type is a hotel before creating a hotel type object
+                    if data[1].lower() == 'hotel':
+                        # Using argument unpacking to pass the attributes to create the hotels and add to the property list
+                        property_list.append(hotel.Hotel(*data))
+                    else:
+                        print('We are only processing hotel at the moment. Please, contact the administrator.')
             else:
                 utils.show_error_message(
                     'It was not possible to load data. Verify if your file input is in the correct format.')
