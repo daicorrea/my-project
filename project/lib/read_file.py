@@ -5,7 +5,7 @@ class ReadFile():
     # Creating File Constructor
     def __init__(self, filename):
         self._data = []
-        self.filename = filename
+        self._filename = filename
         self.read_content()
 
     # Function to Read File Content
@@ -14,7 +14,7 @@ class ReadFile():
             # Opening the file
             # rU stands for: "open for input as a text file with universal newline interpretation".
             # Mode "rU" is also allowed, for symmetry with "rb".
-            with open(self.filename, 'rU') as content:
+            with open(self._filename, 'rU') as content:
                 data = content.readlines()  # Passing each line for a list
             for line in data:
                 words = line.rstrip().split(';')  # Removing special character like space and splitting my list by ;

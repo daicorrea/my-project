@@ -1,6 +1,7 @@
 from lib import read_file
 from lib import hotel
-import sys
+from lib import utils
+
 
 # Function to read file into a list and return that list.
 def load_database():
@@ -23,8 +24,7 @@ def load_database():
         return property_list
     else:
         # If file is not valid, show an error and close the program.
-        print('It was not possible to load data. Verify if you have a .csv file to load.')
-        sys.exit()  # Close Program
+        utils.show_error_message('It was not possible to load data. Verify if you have a .csv file to load.')
 
 # Function to validate if the database desired file is a csv file
 def validate_file(filename):

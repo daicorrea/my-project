@@ -2,7 +2,6 @@ from lib import utils
 from lib import price_quote
 from lib import load_data
 
-import sys
 
 def main():
     # Load Data Information from File
@@ -13,9 +12,9 @@ def main():
     if utils.validate_user_input(user_input):  # Validate input
         input_list = utils.format_user_input(user_input)
     else:
-        print('Sorry, I couldn\'t process your request. Please verify if you are searching in the following format: \n'
-              '<client_type>: <date1>, <date2>, <date3>, ...')
-        sys.exit()  # Close Program
+        utils.show_error_message(
+            'Sorry, I couldn\'t process your request. Please verify if you are searching in the following format: \n'
+            '<client_type>: <date1>, <date2>, <date3>, ...')
 
     # Quote Property Prices
     quote_list = []
@@ -24,11 +23,15 @@ def main():
         for property in property_list:
             # --------------- COMENTAR AQUI DIREITO -------------
             quote_list.append(price_quote.PriceQuote(property, client_type, input_list))
-        utils.get_cheapest_property(quote_list)
+        # Get best property according to price and star rating
+        best_property_quoted = utils.get_best_property(quote_list)
+        # print best property found to user
+        print(best_property_quoted.get_property_name())
     else:
-        print('Sorry, I couldn\'t process your request. Please verify if you typed your client type correctly '
-              '(Regular or Rewards).')
-        sys.exit()
+        utils.show_error_message(
+            'Sorry, I couldn\'t process your request. Please verify if you typed your client type correctly '
+            '(Regular or Rewards).')
+
 
 # Only executes this project by itself. Do not allow to be imported by another program.
 if __name__ == "__main__":
