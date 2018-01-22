@@ -6,7 +6,7 @@ from lib import utils
 # Function to read file into a list and return that list.
 def load_database():
     filename = '../docs/database.csv'
-    if validate_file(filename):
+    if validate_file(filename, '.csv'):
         # Read database file with .csv extension to get current prices information
         file = read_file.ReadFile(filename)
         database = file.get_data()
@@ -16,8 +16,10 @@ def load_database():
         for data in database:
             # Verify if the document has 8 columns
             if validate_list_quatity(data, 8):
-                property_list.append(
-                    hotel.Hotel(*data))  # Using argument unpacking to pass the attributes to create the hotels
+                # Removing data column name line using first identity column item in the list.
+                if 'PROPERTY_NAME' not in data[0]:
+                    # Using argument unpacking to pass the attributes to create the hotels and add to the property list
+                    property_list.append(hotel.Hotel(*data))
             else:
                 utils.show_error_message(
                     'It was not possible to load data. Verify if your file input is in the correct format.')
@@ -28,8 +30,8 @@ def load_database():
 
 
 # Function to validate if the database desired file is a csv file
-def validate_file(filename):
-    if (filename.endswith('.csv')):
+def validate_file(filename, extension):
+    if (filename.endswith(extension)):
         return True
     else:
         return False
