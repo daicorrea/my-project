@@ -1,44 +1,23 @@
 import sys
+import re
 
 
-# Function to format user input leaving client_type in the beginning of the list and the dates at the end.
-def format_user_input(user_input):
-    # Divide to know the client_type
-    user_input = user_input.split(':')
-    client_type = user_input.pop(0)
-    # Divide to know the dates
-    user_input = user_input[0].split(',')
-    # Join information in only one list to return
-    user_input.insert(0, client_type)
-    return user_input
+# Function to receive a text with colon and comma and return a list with the text split.
+def split_text(text_to_split):
+    text_to_split = re.split('[:,]', text_to_split)
+    return text_to_split
 
 
 # Function to verify if param day inputted by the user is week day or weekend
 def verify_day(user_date):
-    day = user_date[user_date.find("(") + 1:user_date.find(
-        ")")]  # Using regular expression to get the day of the week inside the parentheses
-    if day.lower() in ['mon', 'tues', 'wed', 'thur', 'fri']:
+    # Using regular expression to get the day of the week inside the parentheses from the inputted data
+    day = user_date[user_date.find("(") + 1:user_date.find(")")]
+    if day in ['mon', 'tues', 'wed', 'thur', 'fri']:
         return 'week'
-    elif day.lower() in ['sat', 'sun']:
+    elif day in ['sat', 'sun']:
         return 'weekend'
     else:
         return 'error'
-
-
-# Function to see if the value inputted by the user has a valid format
-def validate_user_input(user_input):
-    if (':' and ',') in user_input:
-        return True
-    else:
-        return False
-
-
-# Function to verify if the client type is Regular or Rewards
-def validate_client_type(client_type):
-    if ((client_type == 'regular') or (client_type == 'rewards')):
-        return True
-    else:
-        return False
 
 
 # Function to quote the best property according to price and star rating
