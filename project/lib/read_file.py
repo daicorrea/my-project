@@ -22,6 +22,9 @@ class ReadFile():
         except IOError:
             raise IOError("Houston, we have a problem scanning the document :(")
 
-    # Function to Return the List of Data
+    # Functions to return class information
     def get_data(self):
         return self._data
+
+    def get_filename(self):
+        return self._filename
