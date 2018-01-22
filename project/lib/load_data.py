@@ -13,22 +13,31 @@ def load_database():
 
         # Create Hotel objects
         property_list = []  # Create list to return data
-
-        # --------------------------------------------------
-        # ---------- VERIFICAR SE A ENTRADA TEM 8 ----------
-        # --------------------------------------------------
-
         for data in database:
-            property_list.append(hotel.Hotel(data[0], data[1], data[2], data[3], data[4],
-                                             data[5], data[6], data[7]))
+            # Verify if the document has 8 columns
+            if validate_list_quatity(data, 8):
+                property_list.append(
+                    hotel.Hotel(*data))  # Using argument unpacking to pass the attributes to create the hotels
+            else:
+                utils.show_error_message(
+                    'It was not possible to load data. Verify if your file input is in the correct format.')
         return property_list
     else:
         # If file is not valid, show an error and close the program.
         utils.show_error_message('It was not possible to load data. Verify if you have a .csv file to load.')
 
+
 # Function to validate if the database desired file is a csv file
 def validate_file(filename):
     if (filename.endswith('.csv')):
+        return True
+    else:
+        return False
+
+
+# Function to validate quantity of items in a list
+def validate_list_quatity(list_to_validate, qtd_items):
+    if len(list_to_validate) == qtd_items:
         return True
     else:
         return False
