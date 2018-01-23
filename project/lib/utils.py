@@ -14,7 +14,7 @@ def show_error_message(error_message):
     sys.exit()  # Close Program
 
 
-# Function to verify if param day is week day or weekend
+# Function to verify if param day is weekday or weekend
 def verify_weekday(date_to_verify):
     # Using regular expression to get the day of the week inside the parentheses from the inputted data
     day = date_to_verify[date_to_verify.find("(") + 1:date_to_verify.find(")")]

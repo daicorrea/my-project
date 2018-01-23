@@ -12,7 +12,7 @@ class PriceQuote():
         self._price = 0
         self.quote()
 
-    # Getters Functions
+    # Getters Functions to return each value
     def get_property(self):
         return self._property
 
