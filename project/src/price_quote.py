@@ -31,17 +31,17 @@ class PriceQuote():
             # Verify clienty type and get price according to day type
             if (self._client_type == 'regular'):
                 if utils.verify_weekday(date) == 'week':
-                    self._price += int(self._property.get_week_price())
+                    self._price += int(self._property.week_price)
                 elif utils.verify_weekday(date) == 'weekend':
-                    self._price += int(self._property.get_weekend_price())
+                    self._price += int(self._property.weekend_price)
                 else:
                     utils.show_error_message(
                         'Sorry, I couldn\'t process your request. Please, verify if your dates are in the correct format.')
             elif (self._client_type == 'rewards'):
                 if utils.verify_weekday(date) == 'week':
-                    self._price += int(self._property.get_loyalty_week_price())
+                    self._price += int(self._property.loyalty_week_price)
                 elif utils.verify_weekday(date) == 'weekend':
-                    self._price += int(self._property.get_loyalty_weekend_price())
+                    self._price += int(self._property.loyalty_weekend_price)
                 else:
                     utils.show_error_message(
                         'Sorry, I couldn\'t process your request. Please, verify if your dates are in the correct format.')

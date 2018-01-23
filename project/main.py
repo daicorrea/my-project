@@ -30,7 +30,7 @@ def main():
         # Get best property according to price and star rating
         best_property_quoted = search_property.property_by_price(quote_list)
         # print best property found to user
-        print(best_property_quoted.get_property_name())
+        print(best_property_quoted.property_name)
     else:
         utils.show_error_message(
             'Sorry, I couldn\'t process your request. Please verify if you typed your client type correctly '

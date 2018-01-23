@@ -15,8 +15,8 @@ def property_by_price(quoted_list):
 
         # If both properties have the same, compare them and choose the one with the highest star rating
         if property_quoted.get_final_price() == min_price_quoted:
-            if (property_quoted.get_property().get_property_star_rating()) > (
-                    best_property_quoted.get_property_star_rating()):
+            if (property_quoted.get_property().property_star_rating) > (
+                    best_property_quoted.property_star_rating):
                 min_price_quoted = property_quoted.get_final_price()
                 best_property_quoted = property_quoted.get_property()
 

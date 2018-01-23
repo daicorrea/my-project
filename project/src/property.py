@@ -13,27 +13,35 @@ class Property():
         self._loyalty_week_price = loyalty_week_price
         self._loyalty_weekend_price = loyalty_weekend_price
 
-    # Funtions to return information
-    def get_property_name(self):
+    # Functions to return information
+    @property
+    def property_name(self):
         return self._property_name
 
-    def get_property_type(self):
+    @property
+    def property_type(self):
         return self._property_type
 
-    def get_property_local(self):
+    @property
+    def property_local(self):
         return self._local
 
-    def get_property_star_rating(self):
+    @property
+    def property_star_rating(self):
         return self._star_rating
 
-    def get_week_price(self):
+    @property
+    def week_price(self):
         return self._week_price
 
-    def get_weekend_price(self):
+    @property
+    def weekend_price(self):
         return self._weekend_price
 
-    def get_loyalty_week_price(self):
+    @property
+    def loyalty_week_price(self):
         return self._loyalty_week_price
 
-    def get_loyalty_weekend_price(self):
+    @property
+    def loyalty_weekend_price(self):
         return self._loyalty_weekend_price
