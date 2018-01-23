@@ -1,5 +1,5 @@
-from lib import utils
 from helpers import datetime
+from helpers import dynamic_message
 
 
 class PriceQuote():
@@ -36,7 +36,7 @@ class PriceQuote():
                 elif datetime.verify_weekday(date) == 'weekend':
                     self._price += int(self._property.weekend_price)
                 else:
-                    utils.show_error_message(
+                    dynamic_message.show_error_message(
                         'Sorry, I couldn\'t process your request. Please, verify if your dates are in the correct format.')
             elif (self._client_type == 'rewards'):
                 if datetime.verify_weekday(date) == 'week':
@@ -44,5 +44,5 @@ class PriceQuote():
                 elif datetime.verify_weekday(date) == 'weekend':
                     self._price += int(self._property.loyalty_weekend_price)
                 else:
-                    utils.show_error_message(
+                    dynamic_message.show_error_message(
                         'Sorry, I couldn\'t process your request. Please, verify if your dates are in the correct format.')

@@ -1,28 +1,30 @@
-from lib import utils
+from helpers import load_data
 from helpers import validate
+from helpers import text_analyzer
 from helpers import search_property
+from helpers import dynamic_message
 from src import price_quote
-from src import load_data
-
 
 def main():
     # Load Data Information from File
     property_list = load_data.load_database()
 
-    # Get User Information
+    # Get User Information in lower case to facilitate validations
     user_input = input(
-        'Please enter your type of client and the desired dates: ').lower()  # Already getting the input in lower case
+        'Please enter your type of client and the desired dates: ').lower()
+
     if validate.validate_user_input(user_input):  # Validate input
         # Split input text in a list leaving the client type in the beginning
-        input_list = utils.split_text(user_input)
+        input_list = text_analyzer.split_text(user_input)
     else:
-        utils.show_error_message(
+        dynamic_message.show_error_message(
             'Sorry, I couldn\'t process your request. Please verify if you are searching in the following format: \n'
             '<client_type>: <date1>, <date2>, <date3>, ...')
 
     # Quote Property Prices
     quote_list = []
     client_type = input_list.pop(0)
+
     if validate.validate_client_type(client_type):
         for property in property_list:
             # --------------- COMENTAR AQUI DIREITO -------------
@@ -32,7 +34,7 @@ def main():
         # print best property found to user
         print(best_property_quoted.property_name)
     else:
-        utils.show_error_message(
+        dynamic_message.show_error_message(
             'Sorry, I couldn\'t process your request. Please verify if you typed your client type correctly '
             '(Regular or Rewards).')
 

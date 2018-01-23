@@ -1,6 +1,6 @@
 import unittest
 
-from src import load_data
+from helpers import load_data
 
 class LoadDataTest(unittest.TestCase):
 

@@ -1,11 +1,11 @@
+from helpers import dynamic_message
 from lib import read_file
-from lib import utils
 from src import hotel
 
 
 # Function to read file into a list and return that list.
 def load_database():
-    filename = '../docs/database.csv'
+    filename = './docs/database.csv'
     if validate_file(filename, '.csv'):
         # Read database file with .csv extension to get current prices information
         file = read_file.ReadFile(filename)
@@ -25,12 +25,12 @@ def load_database():
                     else:
                         print('We are only processing hotel at the moment. Please, contact the administrator.')
             else:
-                utils.show_error_message(
+                dynamic_message.show_error_message(
                     'It was not possible to load data. Verify if your file input is in the correct format.')
         return property_list
     else:
         # If file is not valid, show an error and close the program.
-        utils.show_error_message('It was not possible to load data. Verify if you have a .csv file to load.')
+        dynamic_message.show_error_message('It was not possible to load data. Verify if you have a .csv file to load.')
 
 
 # Function to validate if the database desired file is a csv file
