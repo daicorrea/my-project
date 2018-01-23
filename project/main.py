@@ -1,7 +1,8 @@
 from lib import utils
-from lib import price_quote
-from lib import load_data
-from lib import validate
+from helpers import validate
+from helpers import search_property
+from src import price_quote
+from src import load_data
 
 
 def main():
@@ -27,7 +28,7 @@ def main():
             # --------------- COMENTAR AQUI DIREITO -------------
             quote_list.append(price_quote.PriceQuote(property, client_type, input_list))
         # Get best property according to price and star rating
-        best_property_quoted = utils.get_best_property(quote_list)
+        best_property_quoted = search_property.property_by_price(quote_list)
         # print best property found to user
         print(best_property_quoted.get_property_name())
     else:

@@ -1,6 +1,6 @@
 from lib import read_file
-from lib import hotel
 from lib import utils
+from src import hotel
 
 
 # Function to read file into a list and return that list.

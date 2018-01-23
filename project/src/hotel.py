@@ -1,4 +1,4 @@
-from lib import property
+from src import property
 
 
 class Hotel(property.Property):
