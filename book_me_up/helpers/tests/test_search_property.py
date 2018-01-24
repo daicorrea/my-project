@@ -53,143 +53,99 @@ class SearchPropertyTest(unittest.TestCase):
         except:
             pass  # tearDown can't actually be sure that the items exist
 
-    def test_function_runs(self):
-        """Basic smoke test: does the function run."""
-        self.list_quoted_property = []
-        self.list_quoted_property.append(PriceQuote(self.test_property_list[0], 'rewards',
-                                                    ['23jan2018(tues)', '24jan2018(wed)', '25jan2018(thur)']))
-        self.best_quoted_property = search_property.property_by_price(self.list_quoted_property)
-        # print(self.best_quoted_property.property_name)
+    # Function to get the best property using the client type and dates passed by the tests
+    def quote_test_property_list(self, client_type, test_data_input_list):
+        list_quoted_property = []
+        # Create list of quoted properties passing mocked input data
+        for property in self.test_property_list:
+            list_quoted_property.append(PriceQuote(property, client_type, test_data_input_list))
+        best_quoted_property = search_property.property_by_price(list_quoted_property)
+        return best_quoted_property
 
     def test_two_weekdays_one_weekend_price_for_rewards_client(self):
-        """Test to see if best hotel returned for 2 week days and 1 weekend day is correct for rewards clients"""
-        self.test_data_input_list = ['25jan2018(thur)', ' 26jan2018(fri)', '27jan2018(sat)']
-
-        # Create list of quoted properties passing mocked input data
-        self.list_quoted_property = []
-        for property in self.test_property_list:
-            self.list_quoted_property.append(
-                PriceQuote(property, 'rewards', self.test_data_input_list))
-
-        self.best_quoted_property = search_property.property_by_price(self.list_quoted_property)
-        self.assertEqual(self.best_quoted_property.property_name, 'Palace')
+        """Test to see if best hotel returned for two week days and one weekend day is correct for rewards clients"""
+        test_data_input_list = ['25jan2018(thur)', ' 26jan2018(fri)', '27jan2018(sat)']
+        best_quoted_property = self.quote_test_property_list('rewards', test_data_input_list)
+        # Compare returned value with expected result
+        self.assertEqual(best_quoted_property.property_name, 'Palace')
 
     def test_two_weekdays_one_weekend_price_for_regular_client(self):
-        """Test to see if best hotel returned for 2 week days and 1 weekend day is correct for regular clients"""
-        self.test_data_input_list = ['25jan2018(thur)', ' 26jan2018(fri)', '27jan2018(sat)']
-
-        # Create list of quoted properties passing mocked input data
-        self.list_quoted_property = []
-        for property in self.test_property_list:
-            self.list_quoted_property.append(
-                PriceQuote(property, 'regular', self.test_data_input_list))
-
-        self.best_quoted_property = search_property.property_by_price(self.list_quoted_property)
-        self.assertEqual(self.best_quoted_property.property_name, 'Orange')
+        """Test to see if best hotel returned for two week days and one weekend day is correct for regular clients"""
+        test_data_input_list = ['25jan2018(thur)', ' 26jan2018(fri)', '27jan2018(sat)']
+        best_quoted_property = self.quote_test_property_list('regular', test_data_input_list)
+        # Compare returned value with expected result
+        self.assertEqual(best_quoted_property.property_name, 'Orange')
 
     def test_one_weekday_two_weekend_price_for_rewards_client(self):
-        """Test to see if best hotel returned for 1 week day and 2 weekend days is correct for rewards clients"""
-        self.test_data_input_list = ['26jan2018(fri)', ' 27jan2018(sat)', '28jan2018(sun)']
-
-        # Create list of quoted properties passing mocked input data
-        self.list_quoted_property = []
-        for property in self.test_property_list:
-            self.list_quoted_property.append(
-                PriceQuote(property, 'rewards', self.test_data_input_list))
-
-        self.best_quoted_property = search_property.property_by_price(self.list_quoted_property)
-        self.assertEqual(self.best_quoted_property.property_name, 'Palace')
+        """Test to see if best hotel returned for one week day and two weekend days is correct for rewards clients"""
+        test_data_input_list = ['26jan2018(fri)', ' 27jan2018(sat)', '28jan2018(sun)']
+        best_quoted_property = self.quote_test_property_list('rewards', test_data_input_list)
+        # Compare returned value with expected result
+        self.assertEqual(best_quoted_property.property_name, 'Palace')
 
     def test_one_weekday_two_weekend_price_for_regular_client(self):
-        """Test to see if best hotel returned for 1 week day and 2 weekend days is correct for regular clients"""
-        self.test_data_input_list = ['26jan2018(fri)', ' 27jan2018(sat)', '28jan2018(sun)']
-
-        # Create list of quoted properties passing mocked input data
-        self.list_quoted_property = []
-        for property in self.test_property_list:
-            self.list_quoted_property.append(
-                PriceQuote(property, 'regular', self.test_data_input_list))
-
-        self.best_quoted_property = search_property.property_by_price(self.list_quoted_property)
-        self.assertEqual(self.best_quoted_property.property_name, 'Peach')
-
-    def test_three_weekdays_price_for_regular_client(self):
-        """Test to see if best hotel returned for 3 week days is correct for regular clients"""
-        self.test_data_input_list = ['25jan2018(wed)', '25jan2018(thur)', ' 26jan2018(fri)']
-
-        # Create list of quoted properties passing mocked input data
-        self.list_quoted_property = []
-        for property in self.test_property_list:
-            self.list_quoted_property.append(
-                PriceQuote(property, 'regular', self.test_data_input_list))
-
-        self.best_quoted_property = search_property.property_by_price(self.list_quoted_property)
-        self.assertEqual(self.best_quoted_property.property_name, 'Orange')
+        """Test to see if best hotel returned for one week day and two weekend days is correct for regular clients"""
+        test_data_input_list = ['26jan2018(fri)', ' 27jan2018(sat)', '28jan2018(sun)']
+        best_quoted_property = self.quote_test_property_list('regular', test_data_input_list)
+        # Compare returned value with expected result
+        self.assertEqual(best_quoted_property.property_name, 'Peach')
 
     def test_three_weekdays_price_for_rewards_client(self):
-        """Test to see if best hotel returned for 3 week days is correct for rewards clients"""
-        self.test_data_input_list = ['25jan2018(wed)', '25jan2018(thur)', ' 26jan2018(fri)']
+        """Test to see if best hotel returned for three week days is correct for rewards clients"""
+        test_data_input_list = ['25jan2018(wed)', '25jan2018(thur)', ' 26jan2018(fri)']
+        best_quoted_property = self.quote_test_property_list('rewards', test_data_input_list)
+        # Compare returned value with expected result
+        self.assertEqual(best_quoted_property.property_name, 'Orange')
 
-        # Create list of quoted properties passing mocked input data
-        self.list_quoted_property = []
-        for property in self.test_property_list:
-            self.list_quoted_property.append(
-                PriceQuote(property, 'rewards', self.test_data_input_list))
-
-        self.best_quoted_property = search_property.property_by_price(self.list_quoted_property)
-        self.assertEqual(self.best_quoted_property.property_name, 'Orange')
-
-    def test_three_weekend_days_price_for_regular_client(self):
-        """Test to see if best hotel returned for 3 weekend days is correct for regular clients"""
-        self.test_data_input_list = ['20jan2018(sat)', '27jan2018(sat)', '28jan2018(sun)']
-
-        # Create list of quoted properties passing mocked input data
-        self.list_quoted_property = []
-        for property in self.test_property_list:
-            self.list_quoted_property.append(
-                PriceQuote(property, 'regular', self.test_data_input_list))
-
-        self.best_quoted_property = search_property.property_by_price(self.list_quoted_property)
-        self.assertEqual(self.best_quoted_property.property_name, 'Peach')
+    def test_three_weekdays_price_for_regular_client(self):
+        """Test to see if best hotel returned for three week days is correct for regular clients"""
+        test_data_input_list = ['25jan2018(wed)', '25jan2018(thur)', ' 26jan2018(fri)']
+        best_quoted_property = self.quote_test_property_list('regular', test_data_input_list)
+        # Compare returned value with expected result
+        self.assertEqual(best_quoted_property.property_name, 'Orange')
 
     def test_three_weekend_days_price_for_rewards_client(self):
-        """Test to see if best hotel returned for 3 weekend days is correct for rewards clients"""
-        self.test_data_input_list = ['20jan2018(sat)', '27jan2018(sat)', '28jan2018(sun)']
+        """Test to see if best hotel returned for three weekend days is correct for rewards clients"""
+        test_data_input_list = ['20jan2018(sat)', '27jan2018(sat)', '28jan2018(sun)']
+        best_quoted_property = self.quote_test_property_list('rewards', test_data_input_list)
+        # Compare returned value with expected result
+        self.assertEqual(best_quoted_property.property_name, 'Palace')
 
-        # Create list of quoted properties passing mocked input data
-        self.list_quoted_property = []
-        for property in self.test_property_list:
-            self.list_quoted_property.append(
-                PriceQuote(property, 'rewards', self.test_data_input_list))
 
-        self.best_quoted_property = search_property.property_by_price(self.list_quoted_property)
-        self.assertEqual(self.best_quoted_property.property_name, 'Palace')
-
-    def test_one_weekend_day_price_for_regular_client(self):
-        """Test to see if best hotel returned for 3 weekend days is correct for regular clients"""
-        self.test_data_input_list = ['20jan2018(sat)']
-
-        # Create list of quoted properties passing mocked input data
-        self.list_quoted_property = []
-        for property in self.test_property_list:
-            self.list_quoted_property.append(
-                PriceQuote(property, 'regular', self.test_data_input_list))
-
-        self.best_quoted_property = search_property.property_by_price(self.list_quoted_property)
-        self.assertEqual(self.best_quoted_property.property_name, 'Peach')
+    def test_three_weekend_days_price_for_regular_client(self):
+        """Test to see if best hotel returned for three weekend days is correct for regular clients"""
+        test_data_input_list = ['20jan2018(sat)', '27jan2018(sat)', '28jan2018(sun)']
+        best_quoted_property = self.quote_test_property_list('regular', test_data_input_list)
+        # Compare returned value with expected result
+        self.assertEqual(best_quoted_property.property_name, 'Peach')
 
     def test_one_weekend_day_price_for_rewards_client(self):
-        """Test to see if best hotel returned for 3 weekend days is correct for rewards clients"""
-        self.test_data_input_list = ['20jan2018(sat)']
+        """Test to see if best hotel returned for one weekend day is correct for rewards clients"""
+        test_data_input_list = ['20jan2018(sat)']
+        best_quoted_property = self.quote_test_property_list('rewards', test_data_input_list)
+        # Compare returned value with expected result
+        self.assertEqual(best_quoted_property.property_name, 'Palace')
 
-        # Create list of quoted properties passing mocked input data
-        self.list_quoted_property = []
-        for property in self.test_property_list:
-            self.list_quoted_property.append(
-                PriceQuote(property, 'rewards', self.test_data_input_list))
+    def test_one_weekend_day_price_for_regular_client(self):
+        """Test to see if best hotel returned for one weekend day is correct for regular clients"""
+        test_data_input_list = ['20jan2018(sat)']
+        best_quoted_property = self.quote_test_property_list('regular', test_data_input_list)
+        # Compare returned value with expected result
+        self.assertEqual(best_quoted_property.property_name, 'Peach')
 
-        self.best_quoted_property = search_property.property_by_price(self.list_quoted_property)
-        self.assertEqual(self.best_quoted_property.property_name, 'Palace')
+    def test_one_week_day_price_for_rewards_client(self):
+        """Test to see if best hotel returned for one week day is correct for rewards clients"""
+        test_data_input_list = ['25jan2018(thur)']
+        best_quoted_property = self.quote_test_property_list('rewards', test_data_input_list)
+        # Compare returned value with expected result
+        self.assertEqual(best_quoted_property.property_name, 'Orange')
+
+    def test_one_week_day_price_for_regular_client(self):
+        """Test to see if best hotel returned for one week day is correct for regular clients"""
+        test_data_input_list = ['25jan2018(thur)']
+        best_quoted_property = self.quote_test_property_list('regular', test_data_input_list)
+        # Compare returned value with expected result
+        self.assertEqual(best_quoted_property.property_name, 'Orange')
 
 
 if __name__ == '__main__':
