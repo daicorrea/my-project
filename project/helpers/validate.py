@@ -13,3 +13,10 @@ def validate_client_type(client_type):
     else:
         return False
 
+
+# Function to verify if list has values
+def validate_full_list(list_to_validate):
+    if len(list_to_validate) > 0:
+        return True
+    else:
+        return False
