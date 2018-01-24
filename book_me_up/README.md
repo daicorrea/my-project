@@ -4,7 +4,7 @@
 
 <h2>Requirements</h2>
 
-Have python 2.7.9 or higher installed
+Have python 3.3.3 or higher installed. If you have another version, please consider using [pyenv](https://github.com/pyenv/pyenv) to manage your python versions.
 
 <h2>Usage</h2>
 
