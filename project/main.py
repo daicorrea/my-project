@@ -10,6 +10,7 @@ def main():
     # Load Data Information from File
     property_list = load_data.load_database('./docs/database.csv')
 
+
     # Get User Information in lower case to facilitate validations
     user_input = input(
         'Please enter your type of client and the desired dates: ').lower()
@@ -18,7 +19,7 @@ def main():
         # Split input text in a list leaving the client type in the beginning
         input_list = text_analyzer.split_text(user_input)
     else:
-        dynamic_message.show_error_message(
+        dynamic_message.show_error_message_and_quit(
             'Sorry, I couldn\'t process your request. Please verify if you are searching in the following format: \n'
             '<client_type>: <date1>, <date2>, <date3>, ...')
 
@@ -35,7 +36,7 @@ def main():
         # print best property found to user
         print(best_property_quoted.property_name)
     else:
-        dynamic_message.show_error_message(
+        dynamic_message.show_error_message_and_quit(
             'Sorry, I couldn\'t process your request. Please verify if you typed your client type correctly '
             '(Regular or Rewards).')
 

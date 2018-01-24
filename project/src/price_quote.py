@@ -36,7 +36,7 @@ class PriceQuote():
                 elif date_time.verify_weekday(date) == 'weekend':
                     self._price += int(self._property.weekend_price)
                 else:
-                    dynamic_message.show_error_message(
+                    dynamic_message.show_error_message_and_quit(
                         'Sorry, I couldn\'t process your request. Please, verify if your dates are in the correct format.')
             elif (self._client_type == 'rewards'):
                 if date_time.verify_weekday(date) == 'week':
@@ -44,5 +44,5 @@ class PriceQuote():
                 elif date_time.verify_weekday(date) == 'weekend':
                     self._price += int(self._property.loyalty_weekend_price)
                 else:
-                    dynamic_message.show_error_message(
+                    dynamic_message.show_error_message_and_quit(
                         'Sorry, I couldn\'t process your request. Please, verify if your dates are in the correct format.')

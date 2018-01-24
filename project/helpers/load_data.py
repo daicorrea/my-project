@@ -14,7 +14,7 @@ def load_database(filename):
         return property_list
     else:
         # If file is not valid, show an error and close the program.
-        dynamic_message.show_error_message('It was not possible to load data. Verify if you have a .csv file to load.')
+        dynamic_message.show_error_message_and_quit('It was not possible to load data. Verify if you have a .csv file to load.')
 
 
 # Function to create objects
@@ -32,7 +32,7 @@ def create_properties(database):
                 else:
                     print('We are only processing hotel at the moment. Please, contact the administrator.')
         else:
-            dynamic_message.show_error_message(
+            dynamic_message.show_error_message_and_quit(
                 'It was not possible to load data. Verify if your file input is in the correct format.')
     return property_list
 
