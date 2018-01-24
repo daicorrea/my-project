@@ -1,6 +1,6 @@
-# Function to see if the value inputted by the user has a valid format
+# Function to see if the value inputted by the user has only one colon
 def validate_user_input(user_input):
-    if (':' and ',') in user_input:
+    if user_input.count(':') == 1:
         return True
     else:
         return False
@@ -8,7 +8,7 @@ def validate_user_input(user_input):
 
 # Function to verify if the client type is Regular or Rewards
 def validate_client_type(client_type):
-    if ((client_type == 'regular') or (client_type == 'rewards')):
+    if (client_type == 'regular') or (client_type == 'rewards'):
         return True
     else:
         return False
