@@ -5,9 +5,10 @@ from helpers import search_property
 from helpers import dynamic_message
 from src import price_quote
 
+
 def main():
     # Load Data Information from File
-    property_list = load_data.load_database()
+    property_list = load_data.load_database('./docs/database.csv')
 
     # Get User Information in lower case to facilitate validations
     user_input = input(
@@ -23,11 +24,11 @@ def main():
 
     # Quote Property Prices
     quote_list = []
+    # Verify if client option inputted is okay
     client_type = input_list.pop(0)
-
     if validate.validate_client_type(client_type):
         for property in property_list:
-            # --------------- COMENTAR AQUI DIREITO -------------
+            # Store in a list the quoted price for each property for the dates and client type inputted
             quote_list.append(price_quote.PriceQuote(property, client_type, input_list))
         # Get best property according to price and star rating
         best_property_quoted = search_property.property_by_price(quote_list)
