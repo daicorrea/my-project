@@ -22,7 +22,7 @@ class DynamicMessageTest(unittest.TestCase):
     def test_show_error_msg_exception(self):
         """Test the exception type"""
         with self.assertRaises(SystemExit) as e:
-            dynamic_message.show_error_message_and_quit('message')
+            dynamic_message.show_error_message_and_quit('test_message')
         self.assertTrue(isinstance(e.exception, SystemExit))
 
 if __name__ == '__main__':

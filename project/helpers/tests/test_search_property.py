@@ -9,7 +9,7 @@ class SearchPropertyTest(unittest.TestCase):
     """Tests for the ``search_property()`` function."""
 
     def setUp(self):
-        """Fixure that creates a mock list of quoted properties to be used in this test"""
+        """Fixure that creates a mock list of properties to be used in this test"""
         self.first_property = Property(
             property_name='Orange',
             property_type='HOTEL',
