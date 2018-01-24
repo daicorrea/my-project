@@ -12,9 +12,8 @@ def main():
 
 
     # Get User Information in lower case to facilitate validations
-    user_input = input(
-        'Please enter your type of client and the desired dates: ').lower()
-
+    user_input = input('Please enter your type of client and the desired dates: ')
+    user_input = user_input.lower()
     if validate.validate_user_input(user_input):  # Validate input
         # Split input text in a list leaving the client type in the beginning
         input_list = text_analyzer.split_text(user_input)
