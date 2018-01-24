@@ -7,32 +7,23 @@ from .. import dynamic_message
 class DynamicMessageTest(unittest.TestCase):
     """Tests for the ``dynamic_message()`` function."""
 
-    # def test_function_runs(self):
-    #     """Basic smoke test: does the function run."""
-    #     with self.assertRaises(SystemExit) as cm:
-    #         dynamic_message.show_error_message_and_quit('message')
-    #     self.assertEqual(cm.exception.code, 1)
-    #
-    def test_sys_exit_exception(self):
+    def test_function_runs(self):
+        """Basic smoke test: does the function run."""
         with self.assertRaises(SystemExit) as e:
-            sys.exit('exit_with_err')
+            dynamic_message.show_error_message_and_quit('test_message')
         self.assertTrue(isinstance(e.exception, SystemExit))
-        self.assertEqual(e.exception.code, 'exit_with_err')
-        self.assertEqual(e.exception.message, 'exit_with_err')
-        self.assertEqual(e.exception.args, ('exit_with_err',))
 
-    # def test_show_error_msg_exception(self):
-    #     # Test the exception type
-    #     with self.assertRaises(SystemExit) as e:
-    #         dynamic_message.show_error_message_and_quit('message')
-    #     self.assertTrue(isinstance(e.exception, SystemExit))
-    #
-    # def test_show_error_msg(self):
-    #     # Test the exception type
-    #     with self.assertRaises(SystemExit) as e:
-    #         dynamic_message.show_error_message_and_quit('exit_with_err')
-    #     self.assertEqual(e.exception.message, 'exit_with_err')
+    def test_sys_exit_exception_message(self):
+        """Test the error message that is passed"""
+        with self.assertRaises(SystemExit) as e:
+            sys.exit('test_message')
+        self.assertEqual(e.exception.code, 'test_message')
 
+    def test_show_error_msg_exception(self):
+        """Test the exception type"""
+        with self.assertRaises(SystemExit) as e:
+            dynamic_message.show_error_message_and_quit('message')
+        self.assertTrue(isinstance(e.exception, SystemExit))
 
 if __name__ == '__main__':
     unittest.main()
