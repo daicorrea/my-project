@@ -1,4 +1,4 @@
-from helpers import datetime
+from helpers import date_time
 from helpers import dynamic_message
 
 
@@ -31,17 +31,17 @@ class PriceQuote():
         for date in self._desired_days:
             # Verify clienty type and get price according to day type
             if (self._client_type == 'regular'):
-                if datetime.verify_weekday(date) == 'week':
+                if date_time.verify_weekday(date) == 'week':
                     self._price += int(self._property.week_price)
-                elif datetime.verify_weekday(date) == 'weekend':
+                elif date_time.verify_weekday(date) == 'weekend':
                     self._price += int(self._property.weekend_price)
                 else:
                     dynamic_message.show_error_message(
                         'Sorry, I couldn\'t process your request. Please, verify if your dates are in the correct format.')
             elif (self._client_type == 'rewards'):
-                if datetime.verify_weekday(date) == 'week':
+                if date_time.verify_weekday(date) == 'week':
                     self._price += int(self._property.loyalty_week_price)
-                elif datetime.verify_weekday(date) == 'weekend':
+                elif date_time.verify_weekday(date) == 'weekend':
                     self._price += int(self._property.loyalty_weekend_price)
                 else:
                     dynamic_message.show_error_message(
