@@ -20,7 +20,8 @@ class PriceQuoteTest(unittest.TestCase):
             loyalty_weekend_price=90
         )
 
-        self.property_quoted = price_quote.PriceQuote(self.first_property, 'rewards', ['25jan2018(thur)', ' 26jan2018(fri)', '27jan2018(sat)'])
+        self.property_quoted = price_quote.PriceQuote(self.first_property, 'rewards',
+                                                      ['25jan2018(thur)', ' 26jan2018(fri)', '27jan2018(sat)'])
 
     def tearDown(self):
         """Fixure that deletes list used in this test"""
@@ -48,8 +49,6 @@ class PriceQuoteTest(unittest.TestCase):
         """Test if the right value is returned for quoted final price of a property"""
         expected_value = 270
         self.assertEqual(self.property_quoted.get_final_price(), expected_value)
-
-
 
 
 if __name__ == '__main__':

@@ -111,7 +111,6 @@ class SearchPropertyTest(unittest.TestCase):
         # Compare returned value with expected result
         self.assertEqual(best_quoted_property.property_name, 'Palace')
 
-
     def test_three_weekend_days_price_for_regular_client(self):
         """Test to see if best hotel returned for three weekend days is correct for regular clients"""
         test_data_input_list = ['20jan2018(sat)', '27jan2018(sat)', '28jan2018(sun)']

@@ -26,13 +26,13 @@ class DateTimeTest(unittest.TestCase):
         self.assertEqual(date_type, 'error')
 
     def test_verify_date_without_parenthesis(self):
-        """Fixure that verifies if passed param is neither a week day nor a weekend without parenthesis"""
-        date_type = date_time.verify_weekday('potato')
-        self.assertEqual(date_type, 'error')
-
-    def test_verify_date_without_parenthesis(self):
         """Fixure that verifies if a week day is really not accepted if passed outside the desired format"""
         date_type = date_time.verify_weekday('mon')
+        self.assertEqual(date_type, 'error')
+
+    def test_verify_random_string(self):
+        """Fixure that verifies if passed param is neither a week day nor a weekend without parenthesis"""
+        date_type = date_time.verify_weekday('potato')
         self.assertEqual(date_type, 'error')
 
 
