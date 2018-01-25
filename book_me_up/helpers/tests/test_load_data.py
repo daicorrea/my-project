@@ -33,6 +33,11 @@ class LoadDataTest(unittest.TestCase):
         check_extension = load_data.validate_file_extension(self.filename, '.csv')
         self.assertTrue(check_extension)
 
+    def test_validate_wrong_file_extension(self):
+        """Check if the file extension is wrong"""
+        check_extension = load_data.validate_file_extension(self.filename, '.txt')
+        self.assertFalse(check_extension)
+
     def test_item_quantity_in_list(self):
         """See if the quantity of columns of test file is right for each line"""
         with open(self.filename, 'rU') as test_file:
