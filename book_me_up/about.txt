@@ -1,0 +1,49 @@
+# Description of the project structure:
+
+As the problem said to have a file to input data, a .csv file is read thinking about the possibility of, in the future, having a real database. For now, this .csv file can be found in the /docs.
+To keep a clean project and facilitate the understanding and maintenance of the code, the structure was divided in the following structure:
+
+-	./docs:  Directory with a .doc file that contains the description of the problem that was received for this challenge and the .csv file with data to be read in the beginning of the project.
+-	./helpers: Small snippets to assist the libraries and classes. For example, to load data, show an error message or even validate data.
+-	./lib: Classes that act like libraries, helping the main part of the project
+-	./src: Main part of the project. Where the classes are kept.
+
+Each of these folders have their own /tests directory where the tests for the files kept inside the folders can be found. All the tests and classes have docstrings. 
+
+# Assumptions and scalability:
+
+As the problem is about hotels in Miami, the project was made thinking about, in the future, having a bigger data possibility, with the company expending its business and having not only hotels, but also apartments, hostels, inns, etc all over the world. Or even the possibility of the project be selling as a product to other companies. 
+Thinking about this, was created the classes using hierarchy. The highest one is the Property, which for now, has all the data that comes with the .csv file. The Hotel is a child but doesn’t have anything more than the Property class because there was nothing more about hotels only that could be read from the initial problem passed. However, in the future it can have descriptions about allowing animals, garage, etc. As well as how hostels and apartments can have other values and methods for information like number of people allowed in a room, private bedroom, etc.
+
+# Running the project:
+
+The project was developed in a MacOS using python 3.3.3. As described in the README.md file, to start running it go to the project repository (./book_me_up) and type:
+
+	$ python main.py
+
+Thinking about an MVP to show the client, this code was developed to return a message to the user before inputting the data:
+
+	‘Please enter your type of client and the desired dates:’
+
+After typing the code to run in the following format: <client_type>: <date1>, <date2>, … For example:
+
+	$ Regular: 20Mar2009(fri), 21Mar2009(sat), 22Mar2009(sun)
+
+The code will return the name of the best hotel option after checking the cheapest price and highest star rating. For example, the input above would return: 
+
+	‘Bridgewood’
+
+# Running tests:
+
+To run the tests, from the project repository (./book_me_up), run the following command:
+
+	$ python -m unittest –v
+
+This will look inside all of the folders and run 61 unit tests.
+
+# Future Works:
+
+There are some more work to be added in the future to turn the project better;
+-	Create more tests, and not only unit tests;
+-	Organize the tests in only one folder in the same level as the folders docs, helpers, lib and src;
+-	Refactor the main.py file to keep it with less code.
