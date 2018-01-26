@@ -1,6 +1,6 @@
 # BookMeUp
 
-<p>Project that gets the best value per star rating property by searching with dates and client type (regular or Rewards)</p>
+<p>Project that gets the best value per star rating property by searching with dates and client type (regular or Rewards). For more information, read the about.txt file.</p>
 
 <h2>Requirements</h2>
 
